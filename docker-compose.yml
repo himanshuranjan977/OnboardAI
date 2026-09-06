@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./onboardai.db:/app/onboardai.db
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    restart: unless-stopped
+
+  worker:
+    build: .
+    env_file: .env
+    command: ["python", "worker.py"]
+    volumes:
+      - ./onboardai.db:/app/onboardai.db
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    restart: unless-stopped

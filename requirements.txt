@@ -1,0 +1,31 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+email-validator
+python-multipart
+pypdf
+requests
+python-dotenv
+langchain-core
+langchain-groq
+
+Pillow
+pytesseract
+
+PyMuPDF
+
+# Target architecture / orchestration
+langgraph
+httpx
+SQLAlchemy
+alembic
+
+# Knowledge / RAG (optional at runtime; local fallback is built in)
+chromadb
+llama-index-core
+
+# Observability
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp
