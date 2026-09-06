@@ -18,7 +18,7 @@ OnboardAI is an **AI-powered KYC onboarding platform** that automates customer v
 * 🔎 Sanctions & PEP screening
 * ⚠️ Risk & anomaly detection
 * 👨‍💼 Human review for flagged cases
-* 📧 **LLM-powered professional email generation**
+* 📧 LLM-powered professional email generation
 * 📊 KYC & agent monitoring dashboard
 * 📝 Evidence, audit & workflow tracking
 * 🔄 Durable job queue with retry & idempotency
