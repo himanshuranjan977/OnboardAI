@@ -1,36 +1,95 @@
-# OnboardAI — Integrated Agentic KYC Platform
+# 🚀 OnboardAI — Agentic KYC Platform
 
-OnboardAI is a role-aware KYC onboarding prototype with a Supervisor/Worker architecture.
+OnboardAI is an **AI-powered KYC onboarding platform** that automates customer verification using a Supervisor/Worker agent architecture, with human review for cases requiring additional verification.
 
-## Canonical runtime architecture
+## 🌐 Live Demo
 
-React/Vite -> FastAPI -> LangGraph Supervisor -> Outreach -> Data Intake -> Document Intelligence -> Identity + Screening -> Risk -> Anomaly & Alert -> Deterministic Decision -> Human Review when required -> Assistive AI Explanation -> Monitoring.
+🔗 **[OnboardAI — Live on Render](https://onboardai-frontend-o4sz.onrender.com)**
 
-Supporting layers: approved knowledge retrieval (LlamaIndex/ChromaDB when installed, deterministic local fallback otherwise), MCP Tool Gateway, durable SQLite job queue, evidence/audit, OpenTelemetry hooks, and production SQLAlchemy adapter.
+---
 
-## Roles
+## ✨ Features
 
-- CUSTOMER: profile, own cases, document intake and progress.
-- ANALYST: KYC processing and human review.
-- QA: KYC processing and human review.
-- ADMIN: full user/role/notification access.
+* 🔐 JWT Authentication & Role-Based Access
+* 👤 Customer, Analyst, QA & Admin roles
+* 🤖 Multi-agent KYC workflow using LangGraph
+* 📄 Document upload & OCR verification
+* 🪪 Identity verification
+* 🔎 Sanctions & PEP screening
+* ⚠️ Risk & anomaly detection
+* 👨‍💼 Human review for flagged cases
+* 📧 **LLM-powered professional email generation**
+* 📊 KYC & agent monitoring dashboard
+* 📝 Evidence, audit & workflow tracking
+* 🔄 Durable job queue with retry & idempotency
+* 🔌 MCP-based tool gateway
+* 🧠 LlamaIndex/ChromaDB knowledge layer with local fallback
 
-## Backend
+---
+
+## 🏗️ Architecture
+
+```text
+React/Vite
+    ↓
+FastAPI
+    ↓
+LangGraph Supervisor
+    ↓
+Data Intake → Documents → Identity → Screening
+    ↓
+Risk → Anomaly Detection → Decision
+    ↓
+Approve / Human Review
+    ↓
+AI Explanation + Monitoring
+```
+
+---
+
+## 📧 LLM Email Generation
+
+The platform can generate personalized KYC emails using an LLM, including:
+
+* KYC approval notifications
+* Missing document requests
+* Human review notifications
+* Additional information requests
+* KYC status updates
+
+The **final KYC decision remains controlled by deterministic business rules**, while the LLM assists with communication and explanations.
+
+---
+
+## 🛠️ Tech Stack
+
+| Component        | Technology           |
+| ---------------- | -------------------- |
+| Frontend         | React, Vite          |
+| Backend          | FastAPI              |
+| AI Orchestration | LangGraph            |
+| LLM              | Groq / LLM Provider  |
+| Database         | SQLite               |
+| Knowledge Layer  | LlamaIndex, ChromaDB |
+| OCR              | Tesseract            |
+| Authentication   | JWT                  |
+| Tool Gateway     | MCP                  |
+| Monitoring       | OpenTelemetry        |
+| API Testing      | Postman              |
+| Deployment       | Render               |
+
+---
+
+## ⚙️ Run Locally
+
+### Backend
 
 ```bash
-python -m pip install -r requirements.txt
-# Install Tesseract OCR separately.
-cp .env.example .env
+pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-The API starts a lightweight durable-queue worker automatically when `QUEUE_AUTOSTART=true`. For a separate worker process, set it to `false` and run:
-
-```bash
-python worker.py
-```
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -38,37 +97,35 @@ npm install
 npm run dev
 ```
 
-## Important endpoints
+Create `.env` from `.env.example` and add your required API credentials.
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `POST /api/kyc/process-upload`
-- `POST /api/documents/upload`
-- `POST /api/workflow/cases/{case_id}/run`
-- `GET /api/workflow/jobs/{job_id}`
-- `GET /api/dashboard/stats`
-- `GET /api/dashboard/agents`
-- `GET /api/cases/{case_id}/summary`
-- `GET /api/reviews/pending`
+---
 
-## Target architecture components now integrated
+## 🔌 Key APIs
 
-- Supervisor/orchestrator and shared workflow state
-- Nine specialist workers plus Human Review checkpoint
-- Screening through MCP allow-listed gateway
-- Anomaly and alert worker
-- Approved knowledge layer with ChromaDB/LlamaIndex integration and fallback
-- OpenTelemetry tracing hooks
-- Durable SQLite-backed job queue with retries and idempotency key
-- Workflow snapshots and agent event persistence
-- AI explanation with deterministic fallback
-- Production SQLAlchemy persistence adapter boundary
-- Stronger upload magic-byte validation
-- Dashboard and agent monitoring APIs/UI
-- Single canonical React frontend
+```text
+POST /api/auth/register
+POST /api/auth/login
+POST /api/kyc/process-upload
+POST /api/documents/upload
+POST /api/workflow/cases/{case_id}/run
+GET  /api/cases/{case_id}/summary
+GET  /api/reviews/pending
+GET  /api/dashboard/stats
+```
 
-## Security
+---
 
-Never commit `.env` or real credentials. The previous source archive contained a credential-looking Groq secret, so that secret should be rotated and a fresh `.env` created from `.env.example`.
+## 📌 Project Goal
 
-The current risk/decision rules are demonstration policy, not regulatory advice. For production KYC, replace demo screening adapters with a trusted provider, use a production database/object store, add malware scanning, rate limiting, formal migrations, secret management and policy governance.
+OnboardAI demonstrates how **Agentic AI, LLMs, and workflow orchestration** can be combined to build an intelligent, secure, and extensible KYC onboarding platform.
+
+> ⚠️ This is a demonstration project. Risk and decision rules are not intended as regulatory advice.
+
+---
+
+## 👨‍💻 Developer
+
+**Himanshu Ranjan**
+
+[GitHub](https://github.com/himanshuranjan977) • [LinkedIn](https://www.linkedin.com/in/himanshu-ranjan-6019a6215/)
