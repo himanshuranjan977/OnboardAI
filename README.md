@@ -4,7 +4,7 @@ OnboardAI is an **AI-powered KYC onboarding platform** that automates customer v
 
 ## 🌐 Live Demo
 
-🔗 **[OnboardAI — Live on Render](https://onboardai-frontend-o4sz.onrender.com)**
+🔗 **[OnboardAI — Live on Render](https://onboardai-frontend-o4sz.onrender.com/)**
 
 ---
 
